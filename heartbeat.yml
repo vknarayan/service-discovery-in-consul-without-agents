@@ -1,0 +1,25 @@
+################### Heartbeat Configuration ##################################
+# Configure monitors
+# replace path with the folder where have copied dynamic.json
+heartbeat.monitors:
+- type: http
+  watch.poll_file:
+    path: /home/orange/elastic/heartbeat-6.4.0-linux-x86_64/dynamic.json
+    interval: 30s
+
+#==================== Elasticsearch template setting ==========================
+setup.template.settings:
+  index.number_of_shards: 1
+  index.codec: best_compression
+
+#-------------------------- Elasticsearch output ------------------------------
+output.elasticsearch:
+  # Array of hosts to connect to
+  # replace these with actual elasticsearch node ips.
+  hosts: ["192.168.1.28:9200", "192.168.1.29:9200", "192.168.1.30:9200"]
+
+  # Optional protocol and basic auth credentials.
+  # if elasticsearch has authentication, provide the username & password here
+  username: "username"
+  password: "password"
+
